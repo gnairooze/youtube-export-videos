@@ -1,27 +1,35 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using youtube.export.videos.app;
+using youtube.export.videos.app.output;
 
 Console.Title = "Export Youtube Videos";
 
+Markdown _Markdown = new();
+HTML _HTML = new();
+
 while (true)
 {
-    var answer = AskQuestion();
-
+    var operation = AskOperation();
     Console.WriteLine();
 
-    switch (answer.Key)
+    var output = AskOutput();
+    Console.WriteLine();
+
+    IOutput outputHandler = CreateOutputHandler(output);
+
+    switch (operation.Key)
     {
         case ConsoleKey.NumPad1:
         case ConsoleKey.D1:
-            await ExportVideos.ExportChannel();
+            await ExportVideos.ExportChannel(outputHandler);
             break;
         case ConsoleKey.NumPad2:
         case ConsoleKey.D2:
-            await ExportVideos.ExportUser();
+            await ExportVideos.ExportUser(outputHandler);
             break;
         case ConsoleKey.NumPad3:
         case ConsoleKey.D3:
-            await ExportVideos.ExportSlug();
+            await ExportVideos.ExportSlug(outputHandler);
             break;
         case ConsoleKey.NumPad4:
         case ConsoleKey.D4:
@@ -30,7 +38,37 @@ while (true)
     }
 }
 
-static ConsoleKeyInfo AskQuestion()
+IOutput CreateOutputHandler(ConsoleKeyInfo output)
+{
+    while (true)
+    {
+        switch (output.Key)
+        {
+            case ConsoleKey.NumPad1:
+            case ConsoleKey.D1:
+                return _Markdown;
+            case ConsoleKey.NumPad2:
+            case ConsoleKey.D2:
+                return _HTML;
+        }
+
+        output = AskOutput();
+    }
+}
+
+static ConsoleKeyInfo AskOutput()
+{
+    Console.WriteLine($"{Environment.NewLine}");
+    Console.WriteLine("What is the type of output format:");
+    Console.WriteLine("1. Markdown");
+    Console.WriteLine("2. HTML");
+    Console.WriteLine();
+
+    var answer = Console.ReadKey();
+    return answer;
+}
+
+static ConsoleKeyInfo AskOperation()
 {
     Console.WriteLine($"{Environment.NewLine}");
     Console.WriteLine("Please select one of the following:");

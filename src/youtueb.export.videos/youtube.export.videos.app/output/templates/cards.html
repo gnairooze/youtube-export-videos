@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ChannelName}} - Video List</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <style>
+        body{
+            background-color:black;
+            color:white;
+        }
+
+        .g-card {
+            margin: 4px;
+        }
+
+        .flex-container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+<body>
+    <a href="{{ChannelUrl}}" target="_blank">
+        <h1>{{ChannelName}}</h1>
+    </a>
+    <p>{{videosCount}} videos exported on {{createDate}}</p>
+
+    <div class="flex-container">
+        {{#each videos}}
+        <div class="w3-card-4 w3-center w3-hover-shadow g-card">
+            <header class="w3-container w3-center w3-blue">
+                <h3>{{Title}}</h3>
+            </header>
+            <div class="w3-container w3-center">
+                <a href="{{Url}}" target="_blank">
+                    <img title="{{Title}}" alt="{{Title}}" src="https://i.ytimg.com/vi/{{Id}}/mqdefault.jpg" />
+                </a>
+            </div>
+            <footer class="w3-container w3-center w3-blue">
+                <p>{{Duration}}</p>
+            </footer>
+        </div>
+        {{/each}}
+    </div>
+</body>
+</html>

@@ -5,10 +5,19 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <AssemblyVersion>2.0.0</AssemblyVersion>
+    <FileVersion>2.0.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="mustache-sharp" Version="1.0.0" />
     <PackageReference Include="YoutubeExplode" Version="6.2.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="output\templates\cards.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
