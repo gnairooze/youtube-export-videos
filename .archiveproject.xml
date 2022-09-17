@@ -1,6 +1,6 @@
 <configuration>
 	<targetPath>f:\Data\My Projects\youtube-export-videos</targetPath>
-	<attendedRun>true</attendedRun>
+	<attendedRun>false</attendedRun>
 	<ignoreList>
 		<ignore>bin</ignore>
 		<ignore>obj</ignore>
